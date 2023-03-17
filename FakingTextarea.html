@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Faking Textarea</title>
+</head>
+<body>
+<center>
+    <h1>Type anthing slowly</h1>
+    <form name="form">
+        <textarea name="txt" cols="60" rows="10" onkeydown="faking()"></textarea>
+    </form>
+</center>
+<script>
+    function faking() {
+        let arr = ['T', 'ô', 'i', ' ', 'l', 'à', ' ', 'm', 'ộ', 't', ' ', 'đ', 'ứ', 'a', ' ', 'n', 'g', 'ố', 'c', '!'];
+        let result = '';
+        let text = document.form.txt.value;
+        if (text.length > 0) {
+            for (let i = 0; i < text.length; i++) {
+                result += arr[i];
+                if (i === 20) {
+                    document.form.txt.value = '';
+                    result = '';
+                }
+            }
+        }
+        document.form.txt.value = result;
+        setTimeout(faking, 1);
+    }
+</script>
+</body>
+</html>
